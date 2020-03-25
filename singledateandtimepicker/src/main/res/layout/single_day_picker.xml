@@ -9,7 +9,7 @@
     <View
         android:id="@+id/dtSelector_title"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/wheelSelectorHeight"
         android:layout_gravity="top"
         android:background="@color/picker_default_selected_text_color" />
 
@@ -17,27 +17,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:gravity="center"
         android:orientation="horizontal">
 
-
         <LinearLayout
             android:id="@+id/lv_days"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="0.8"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/daysPicker_title"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
+                android:layout_height="@dimen/wheelSelectorHeight"
                 android:gravity="center"
-                android:text="Date" />
+                android:textColor="@color/picker_default_title_color"
+                android:textSize="@dimen/WheelItemTextSize"
+                android:text="@string/date" />
 
             <com.github.florent37.singledateandtimepicker.widget.WheelDayPicker
                 android:id="@+id/daysPicker"
@@ -51,22 +52,55 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/lv_month"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/monthPicker_title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/wheelSelectorHeight"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/month"
+                android:textColor="@color/picker_default_title_color"
+                android:textSize="@dimen/WheelItemTextSize" />
+
+            <com.github.florent37.singledateandtimepicker.widget.WheelMonthPicker
+                android:id="@+id/monthPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:wheel_atmospheric="true"
+                app:wheel_item_align="center" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/lv_days_month"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/daysOfMonthPicker_title"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/wheelSelectorHeight"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="Month"
-                android:textColor="#ffffff"
+                android:text="@string/date"
+                android:textColor="@color/picker_default_title_color"
                 android:textSize="@dimen/WheelItemTextSize" />
 
             <com.github.florent37.singledateandtimepicker.widget.WheelDayOfMonthPicker
@@ -79,102 +113,81 @@
                 app:wheel_item_align="right" />
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lv_month"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/monthPicker_title"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="Month"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/WheelItemTextSize" />
-        <com.github.florent37.singledateandtimepicker.widget.WheelMonthPicker
-            android:id="@+id/monthPicker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/lv_year"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            app:wheel_atmospheric="true"
-            app:wheel_item_align="right" />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/lv_year"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/yearPicker_title"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="Year"
-            android:textColor="#ffffff"
-            android:textSize="@dimen/WheelItemTextSize" />
-        <com.github.florent37.singledateandtimepicker.widget.WheelYearPicker
-            android:id="@+id/yearPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            app:wheel_atmospheric="true"
-            app:wheel_item_align="right" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/yearPicker_title"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/wheelSelectorHeight"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="@string/year"
+                android:textColor="@color/picker_default_title_color"
+                android:textSize="@dimen/WheelItemTextSize"/>
+
+            <com.github.florent37.singledateandtimepicker.widget.WheelYearPicker
+                android:id="@+id/yearPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                app:wheel_atmospheric="true"
+                app:wheel_item_align="right" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/lv_hour"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/hourPicker_title"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="@dimen/wheelSelectorHeight"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="Hour"
-                android:textColor="#ffffff"
+                android:text="@string/hour"
+                android:textColor="@color/picker_default_title_color"
                 android:textSize="@dimen/WheelItemTextSize" />
 
             <com.github.florent37.singledateandtimepicker.widget.WheelHourPicker
                 android:id="@+id/hoursPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 app:wheel_atmospheric="true"
                 app:wheel_item_align="center" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lv_min"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
+            android:visibility="visible"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/minPicker_title"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerInParent="true"
+                android:layout_height="@dimen/wheelSelectorHeight"
                 android:gravity="center"
-                android:text="Min"
-                android:textColor="#ffffff"
+                android:text="@string/min"
+                android:textColor="@color/picker_default_title_color"
                 android:textSize="@dimen/WheelItemTextSize" />
 
             <com.github.florent37.singledateandtimepicker.widget.WheelMinutePicker
@@ -185,27 +198,28 @@
                 app:wheel_item_align="center" />
         </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lvAmPmPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"/>
-
-        <com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker
-            android:id="@+id/amPmPicker"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/lvAmPmPicker"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="30dp"
-            app:wheel_atmospheric="true"
-            app:wheel_item_align="center"
-            app:wheel_same_width="true"
-            app:wheel_visible_item_count="2" />
-    </LinearLayout>
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="visible"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/wheelSelectorHeight" />
+
+            <com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker
+                android:id="@+id/amPmPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:wheel_atmospheric="true"
+                app:wheel_item_align="center"
+                app:wheel_same_width="true"
+                app:wheel_visible_item_count="2" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
@@ -213,7 +227,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/wheelSelectorHeight"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:alpha="0.2"
         android:background="@color/picker_default_selector_color" />
 

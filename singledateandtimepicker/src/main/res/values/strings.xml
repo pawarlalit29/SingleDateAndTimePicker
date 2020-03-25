@@ -3,4 +3,9 @@
     <string name="picker_today">Today</string>
     <string name="picker_am">AM</string>
     <string name="picker_pm">PM</string>
+    <string name="date">Date</string>
+    <string name="hour">Hour</string>
+    <string name="min">Min</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
 </resources>
