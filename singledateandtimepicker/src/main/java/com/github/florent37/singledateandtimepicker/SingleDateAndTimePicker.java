@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.florent37.singledateandtimepicker.widget.DateWithLabel;
 import com.github.florent37.singledateandtimepicker.widget.WheelAmPmPicker;
@@ -70,6 +72,21 @@ public class SingleDateAndTimePicker extends LinearLayout {
     private View dtSelector;
     private boolean mustBeOnFuture;
 
+    private TextView tvDaysPicker;
+    private TextView tvDaysOfMonthPicker;
+    private TextView tvMonthPicker;
+    private TextView tvYearPicker;
+    private TextView tvHourPicker;
+    private TextView tvMinPicker;
+    private View selectorTitle;
+
+    private LinearLayout lvDays;
+    private LinearLayout lvDaysOfMonth;
+    private LinearLayout lvYear;
+    private LinearLayout lvMonth;
+    private LinearLayout lvHour;
+    private LinearLayout lvMin;
+
     @Nullable
     private Date minDate;
     @Nullable
@@ -110,6 +127,24 @@ public class SingleDateAndTimePicker extends LinearLayout {
         hoursPicker = findViewById(R.id.hoursPicker);
         amPmPicker = findViewById(R.id.amPmPicker);
         dtSelector = findViewById(R.id.dtSelector);
+
+        tvDaysPicker = findViewById(R.id.daysPicker_title);
+        tvDaysOfMonthPicker = findViewById(R.id.daysOfMonthPicker_title);
+        tvMonthPicker = findViewById(R.id.monthPicker_title);
+        tvYearPicker = findViewById(R.id.yearPicker_title);
+        tvHourPicker = findViewById(R.id.hourPicker_title);
+        tvMinPicker = findViewById(R.id.minPicker_title);
+
+        lvDays = findViewById(R.id.lv_days);
+        lvDaysOfMonth = findViewById(R.id.lv_days_month);
+        lvMonth = findViewById(R.id.lv_month);
+        lvYear = findViewById(R.id.lv_year);
+        lvHour = findViewById(R.id.lv_hour);
+        lvMin = findViewById(R.id.lv_min);
+
+        selectorTitle = findViewById(R.id.dtSelector_title);
+
+        tvDaysOfMonthPicker = findViewById(R.id.daysOfMonthPicker_title);
 
         pickers.addAll(Arrays.asList(
                 daysPicker,
@@ -233,18 +268,18 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setDisplayYears(boolean displayYears) {
         this.displayYears = displayYears;
-        yearsPicker.setVisibility(displayYears ? VISIBLE : GONE);
+        lvYear.setVisibility(displayYears ? VISIBLE : GONE);
     }
 
     public void setDisplayMonths(boolean displayMonths) {
         this.displayMonth = displayMonths;
-        monthPicker.setVisibility(displayMonths ? VISIBLE : GONE);
+        lvMonth.setVisibility(displayMonths ? VISIBLE : GONE);
         checkSettings();
     }
 
     public void setDisplayDaysOfMonth(boolean displayDaysOfMonth) {
         this.displayDaysOfMonth = displayDaysOfMonth;
-        daysOfMonthPicker.setVisibility(displayDaysOfMonth ? VISIBLE : GONE);
+        lvDaysOfMonth.setVisibility(displayDaysOfMonth ? VISIBLE : GONE);
 
         if (displayDaysOfMonth) {
             updateDaysOfMonth();
@@ -254,18 +289,18 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setDisplayDays(boolean displayDays) {
         this.displayDays = displayDays;
-        daysPicker.setVisibility(displayDays ? VISIBLE : GONE);
+        lvDays.setVisibility(displayDays ? VISIBLE : GONE);
         checkSettings();
     }
 
     public void setDisplayMinutes(boolean displayMinutes) {
         this.displayMinutes = displayMinutes;
-        minutesPicker.setVisibility(displayMinutes ? VISIBLE : GONE);
+        lvMin.setVisibility(displayMinutes ? VISIBLE : GONE);
     }
 
     public void setDisplayHours(boolean displayHours) {
         this.displayHours = displayHours;
-        hoursPicker.setVisibility(displayHours ? VISIBLE : GONE);
+        lvHour.setVisibility(displayHours ? VISIBLE : GONE);
 
         setIsAmPm(this.isAmPm);
         hoursPicker.setIsAmPm(isAmPm);
@@ -304,7 +339,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         for (WheelPicker picker : pickers) {
             picker.setSelectedItemTextColor(selectedTextColor);
         }
-    }
+}
 
     public void setTextColor(int textColor) {
         for (WheelPicker picker : pickers) {
@@ -314,7 +349,36 @@ public class SingleDateAndTimePicker extends LinearLayout {
 
     public void setSelectorColor(int selectorColor) {
         dtSelector.setBackgroundColor(selectorColor);
+
     }
+
+    public void setTitleColor(int titleColor){
+        tvDaysPicker.setTextColor(titleColor);
+        tvDaysOfMonthPicker.setTextColor(titleColor);
+        tvMonthPicker.setTextColor(titleColor);
+        tvYearPicker.setTextColor(titleColor);
+        tvHourPicker.setTextColor(titleColor);
+        tvMinPicker.setTextColor(titleColor);
+    }
+
+    public void setTitleBackgroundColor(int bgColor){
+        selectorTitle.setBackgroundColor(bgColor);
+    }
+
+    public void setTitleTextSize(float textSize){
+        float defualtSize = getResources().getDimension(R.dimen.WheelItemTextSize);
+        if(textSize > defualtSize)
+            textSize = defualtSize;
+
+        tvDaysPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        tvDaysOfMonthPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        tvMonthPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        tvYearPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        tvHourPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+        tvMinPicker.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
+
+    }
+
 
     public void setSelectorHeight(int selectorHeight) {
         final ViewGroup.LayoutParams dtSelectorLayoutParams = dtSelector.getLayoutParams();
@@ -566,8 +630,11 @@ public class SingleDateAndTimePicker extends LinearLayout {
         setTextColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_textColor, ContextCompat.getColor(context, R.color.picker_default_text_color)));
         setSelectedTextColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectedTextColor, ContextCompat.getColor(context, R.color.picker_default_selected_text_color)));
         setSelectorColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_selectorColor, ContextCompat.getColor(context, R.color.picker_default_selector_color)));
+        setTitleColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_titleColor, ContextCompat.getColor(context, R.color.picker_default_title_color)));
+        setTitleBackgroundColor(a.getColor(R.styleable.SingleDateAndTimePicker_picker_titleBackgroundColor, ContextCompat.getColor(context, R.color.picker_default_title_background_color)));
         setSelectorHeight(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_selectorHeight, resources.getDimensionPixelSize(R.dimen.wheelSelectorHeight)));
         setTextSize(a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_textSize, resources.getDimensionPixelSize(R.dimen.WheelItemTextSize)));
+        setTitleTextSize( a.getDimensionPixelSize(R.styleable.SingleDateAndTimePicker_picker_titleTextSize, resources.getDimensionPixelSize(R.dimen.WheelItemTextSize)));
         setCurved(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_curved, IS_CURVED_DEFAULT));
         setCyclic(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_cyclic, IS_CYCLIC_DEFAULT));
         setMustBeOnFuture(a.getBoolean(R.styleable.SingleDateAndTimePicker_picker_mustBeOnFuture, MUST_BE_ON_FUTUR_DEFAULT));

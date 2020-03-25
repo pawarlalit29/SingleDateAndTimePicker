@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFFFFF"
-    android:gravity="center"
+    android:background="#000000"
+    android:gravity="bottom|center_horizontal"
     android:orientation="vertical"
     >
 
@@ -17,12 +17,22 @@
 
     <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
         android:id="@+id/single_day_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="230dp"
-        app:picker_curved="true"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:picker_todayText="Today"
+        app:picker_textSize="18dp"
+        app:picker_displayDaysOfMonth="true"
+        app:picker_displayDays="false"
+        app:picker_displayMonth="true"
+        app:picker_displayYears="true"
+        app:picker_mustBeOnFuture="false"
+        app:picker_visibleItemCount="5"
+        app:picker_curved="false"
         app:picker_cyclic="true"
-        app:picker_mustBeOnFuture="true"
-        app:picker_visibleItemCount="7"
+        app:picker_selectedTextColor="#E08032"
+        app:picker_titleColor="#ffffff"
+        app:picker_titleBackgroundColor="#E08032"
+        app:picker_selectorColor="#E08032"
         />
 
 </LinearLayout>
