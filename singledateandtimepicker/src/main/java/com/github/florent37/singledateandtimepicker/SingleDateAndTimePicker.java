@@ -86,6 +86,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     private LinearLayout lvMonth;
     private LinearLayout lvHour;
     private LinearLayout lvMin;
+    private LinearLayout lvAmPm;
 
     @Nullable
     private Date minDate;
@@ -141,6 +142,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         lvYear = findViewById(R.id.lv_year);
         lvHour = findViewById(R.id.lv_hour);
         lvMin = findViewById(R.id.lv_min);
+        lvAmPm = findViewById(R.id.lvAmPmPicker);
 
         selectorTitle = findViewById(R.id.dtSelector_title);
 
@@ -306,6 +308,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
         hoursPicker.setIsAmPm(isAmPm);
     }
 
+
     public void setDisplayMonthNumbers(boolean displayMonthNumbers) {
         this.monthPicker.setDisplayMonthNumbers(displayMonthNumbers);
         this.monthPicker.updateAdapter();
@@ -395,7 +398,7 @@ public class SingleDateAndTimePicker extends LinearLayout {
     public void setIsAmPm(boolean isAmPm) {
         this.isAmPm = isAmPm;
 
-        amPmPicker.setVisibility((isAmPm && displayHours) ? VISIBLE : GONE);
+        lvAmPm.setVisibility((isAmPm && displayHours) ? VISIBLE : GONE);
         hoursPicker.setIsAmPm(isAmPm);
     }
 
